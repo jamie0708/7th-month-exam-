@@ -3,10 +3,8 @@ import {
     write
 } from '../utils/model.js'
 import {
-    InternalServerError
+    InternalServerError, notFoundError
 } from "../utils/errors.js"
-import sha256 from 'sha256'
-import jwt from '../utils/jwt.js'
 
 const GET = (req, res, next) => {
     try {
@@ -49,7 +47,7 @@ const POST = (req, res, next) => {
             return next( new AuthrizationError(401, 'this sub-category exists') )
         }
         subCategories.push(req.body)
-        write('subCategories', subCategories)
+        write('sub_categories', subCategories)
 
         res.status(201).json({
             status: 201,
@@ -71,14 +69,14 @@ const PUT = (req, res, next) => {
   
       let subCategory = subCategories.find(
         (subCategory) => {
-          subCategory.sub_category_id == subCategoryId &&
+          subCategory.sub_category_id == subCategoryId 
           users.find((user) => user.user_id == req.user_id)
         }
       );
       console.log(subCategory);
   
       if (!subCategory) {
-        return next(new InternalServerError(404, "Subctegory not found"));
+        return next(new notFoundError(404, "Subctegory not found"));
       }
   
       subCategory.sub_category_name =
@@ -113,7 +111,7 @@ const PUT = (req, res, next) => {
       );
   
       if (subCategoryIndex == -1) {
-        return next(new InternalServerError(404, "subCategory not found"));
+        return next(new notFoundError(404, "subCategory not found"));
       }
   
       let [subCategory] = subCategories.splice(subCategoryIndex, 1);

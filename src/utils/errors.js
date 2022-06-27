@@ -31,3 +31,12 @@ export class ForbiddenError extends Error {
         this.message = message
     }
 }
+
+export class notFoundError extends Error {
+    constructor(status, message){
+        super()
+        this.name = 'notFoundError '
+        this.status = status
+        this.message = message
+    }
+}

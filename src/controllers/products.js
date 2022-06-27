@@ -1,4 +1,4 @@
-import { InternalServerError, notFoundError } from "../error/error.js";
+import { InternalServerError, notFoundError } from "../utils/errors.js";
 import { read, write } from "../utils/model.js";
 
 const GET = (req, res, next) => {
@@ -194,5 +194,5 @@ export default {
   GET,
   POST,
   PUT,
-  DELETE,
+  DELETE
 };

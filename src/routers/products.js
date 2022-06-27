@@ -1,5 +1,5 @@
 import { Router } from "express";
-import controller from '../controller/products.js';
+import controller from '../controllers/products.js';
 import checkToken from "../middleware/checkToken.js";
 
 

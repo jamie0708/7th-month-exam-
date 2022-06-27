@@ -3,9 +3,12 @@ import controller from '../controllers/subcategories.js'
 
 const router = Router()
 
-router.get('/subcategories',  controller.GET)
-router.get('/subcategories/:subCategoryId',  controller.GET)
-router.post('/subcategories', controller.POST)
-router.put('/subcategories/:subCategoryId', controller.PUT)
+router.route('/subcategories')
+    .get( controller.GET )
+    .post( controller.POST )
 
-export default router
+router.route('/subcategories/:subCategoryId')
+    .get( controller.GET )
+    .put( controller.PUT )
+
+export default router;

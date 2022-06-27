@@ -10,6 +10,7 @@ const app = express()
 import userRouter from './routers/user.js'
 import categoriesRouter from './routers/categories.js'
 import subCategoriesRouter from './routers/subcategories.js'
+import productsRouter from './routers/products.js'
 
 app.use(cors())
 app.use( express.json() )
@@ -18,6 +19,7 @@ app.use( express.static( path.join(process.cwd(), 'public')))
 app.use(userRouter)
 app.use( categoriesRouter)
 app.use( subCategoriesRouter)
+app.use( productsRouter )
 
 app.use((error, req, res, next) => {
     if(error.status != 500){
